@@ -47,9 +47,15 @@
             font-size: 1.2em;
             font-weight: bold;
             transition: all 0.3s ease;
+            border-bottom: 3px solid transparent; /* Add underline for active state */
+        }
+        nav a.active {
+            background: linear-gradient(135deg, #ff7f50, #ff6347); /* Coral gradient */
+            border-bottom: 3px solid #ff6347; /* Coral underline */
+            color: white;
         }
         nav a:hover {
-            background: linear-gradient(135deg, #666, #888);
+            background: linear-gradient(135deg, #ff7f50, #ff6347); /* Coral hover effect */
             transform: scale(1.1);
         }
         .container {
@@ -186,7 +192,7 @@
         button {
             padding: 15px 30px;
             font-size: 1.2em;
-            background: linear-gradient(135deg, #444, #666);
+            background: linear-gradient(135deg, #ff7f50, #ff6347); /* Coral gradient */
             color: white;
             border: none;
             border-radius: 10px;
@@ -261,10 +267,10 @@
         <p>Your Partner in Modern Metal Buildings & DIY Solutions</p>
     </header>
     <nav>
-        <a href="#" onclick="showSection('home')">Home</a>
-        <a href="#" onclick="showSection('services')">Services</a>
-        <a href="#" onclick="showSection('about')">About Us</a>
-        <a href="#" onclick="showSection('contact')">Contact</a>
+        <a href="#" onclick="showSection('home')" id="homeButton">Home</a>
+        <a href="#" onclick="showSection('services')" id="servicesButton">Services</a>
+        <a href="#" onclick="showSection('about')" id="aboutButton">About Us</a>
+        <a href="#" onclick="showSection('contact')" id="contactButton">Contact</a>
     </nav>
     <div class="container">
         <!-- Home Section -->
@@ -309,21 +315,33 @@
     </footer>
 
     <script>
-        // Function to show the selected section and hide others
+        // Function to show the selected section and highlight the active button
         function showSection(sectionId) {
-            // Hide all sections
+            // Remove 'active' class from all sections and buttons
             document.querySelectorAll('section').forEach(section => {
                 section.classList.remove('active');
             });
-            // Show the selected section
+            document.querySelectorAll('nav a').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Add 'active' class to the selected section and button
             const selectedSection = document.getElementById(sectionId);
             selectedSection.classList.add('active');
+
+            const selectedButton = document.getElementById(`${sectionId}Button`);
+            selectedButton.classList.add('active');
 
             // Trigger fade-in effect
             setTimeout(() => {
                 selectedSection.classList.add('fade-in-active');
             }, 50);
         }
+
+        // Initialize the first button as active on page load
+        window.onload = () => {
+            document.getElementById('homeButton').classList.add('active');
+        };
 
         // Add scroll animation for elements with class 'fade-in'
         window.addEventListener('scroll', () => {
