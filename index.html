@@ -29,12 +29,12 @@
             flex-direction: column;
         }
         header img {
-            height: 100px; /* Fixed height for the logo */
-            width: auto; /* Maintain aspect ratio */
+            width: 100%; /* Stretch logo to full width of header */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 150px; /* Limit maximum height to prevent distortion */
             object-fit: contain; /* Ensure proper scaling */
             margin-bottom: 10px;
             border-radius: 10px; /* Rounded corners for a modern look */
-            border: 2px solid red; /* Debugging border to confirm placement */
         }
         header h1 {
             margin: 0;
@@ -248,7 +248,7 @@
         /* Media Queries */
         @media (max-width: 768px) {
             header img {
-                height: 80px; /* Smaller logo on smaller screens */
+                max-height: 100px; /* Smaller logo on smaller screens */
             }
             header h1 {
                 font-size: 1.5em; /* Adjust title size */
@@ -321,4 +321,22 @@
             <h2>About Us</h2>
             <img src="https://via.placeholder.com/800x400" alt="DRAZ INC. Team">
             <p>Founded in 2015, DRAZ INC. has become a leader in the metal construction industry. Our mission is to provide durable, sustainable, and innovative metal solutions that meet the needs of our clients.</p>
-            <p>Whether you're looking for a custom-designed metal building or a DIY kit to bring your ideas to life, we're here
+            <p>Whether you're looking for a custom-designed metal building or a DIY kit to bring your ideas to life, we're here to help!</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="fade-in">
+            <h2>Contact Us</h2>
+            <form action="#" method="post">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2023 DRAZ INC. All rights reserved.</p>
+    </footer>
+</body>
+</html>
