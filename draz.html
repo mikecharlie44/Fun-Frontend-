@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetalCraft - Modern Metal Buildings & DIY Solutions</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3.5em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+        nav {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 20px 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            background: linear-gradient(135deg, #ff9966, #ff5e62);
+            transform: scale(1.1);
+        }
+        .container {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        section {
+            margin-bottom: 60px;
+            display: none;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        section h2 {
+            color: #4e54c8;
+            border-bottom: 3px solid #6a11cb;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-align: center;
+            position: relative;
+        }
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 50px;
+            height: 5px;
+            background: #ff9966;
+            transform: translateX(-50%);
+        }
+        section p, section ul {
+            font-size: 1.2em;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        section ul {
+            list-style-type: square;
+            padding-left: 30px;
+        }
+        footer {
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        /* Metal Building Structure Background Animation */
+        .metal-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .metal-background svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            transform: translate(-50%, -50%);
+            animation: moveMetal 20s infinite linear;
+        }
+        @keyframes moveMetal {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Creative Home Section */
+        #home {
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+        }
+        #home h2 {
+            color: white;
+            border-bottom: none;
+            font-size: 3em;
+        }
+
+        /* Creative About Us Section */
+        #about img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+        #about img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Creative Contact Form */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input, textarea {
+            margin-bottom: 20px;
+            padding: 15px;
+            font-size: 1.1em;
+            border: 2px solid #6a11cb;
+            border-radius: 10px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
+            max-width: 500px;
+        }
+        input:focus, textarea:focus {
+            border-color: #ff9966;
+            transform: scale(1.05);
+            outline: none;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background: linear-gradient(135deg, #ff9966, #ff5e62);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Fun Hover Effects */
+        section p:hover {
+            color: #ff9966;
+            transition: color 0.3s ease;
+        }
+        section ul li:hover {
+            color: #6a11cb;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            nav a {
+                padding: 15px 10px;
+                font-size: 1em;
+            }
+            .container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Metal Building Structure Background -->
+    <div class="metal-background">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" fill="#808080" opacity="0.2">
+            <!-- Base Structure -->
+            <rect x="200" y="600" width="600" height="300" stroke="#666" stroke-width="10" />
+            <rect x="300" y="400" width="400" height="200" stroke="#666" stroke-width="10" />
+            <rect x="400" y="200" width="200" height="200" stroke="#666" stroke-width="10" />
+
+            <!-- Beams -->
+            <line x1="400" y1="200" x2="400" y2="900" stroke="#666" stroke-width="10" />
+            <line x1="600" y1="200" x2="600" y2="900" stroke="#666" stroke-width="10" />
+            <line x1="300" y1="400" x2="700" y2="400" stroke="#666" stroke-width="10" />
+            <line x1="200" y1="600" x2="800" y2="600" stroke="#666" stroke-width="10" />
+
+            <!-- Roof -->
+            <polygon points="300,200 500,50 700,200" fill="#a9a9a9" stroke="#666" stroke-width="10" />
+        </svg>
+    </div>
+
+    <header>
+        <h1>Welcome to MetalCraft</h1>
+        <p>Your Partner in Modern Metal Buildings & DIY Solutions</p>
+    </header>
+    <nav>
+        <a href="#" onclick="showSection('home')">Home</a>
+        <a href="#" onclick="showSection('services')">Services</a>
+        <a href="#" onclick="showSection('about')">About Us</a>
+        <a href="#" onclick="showSection('contact')">Contact</a>
+    </nav>
+    <div class="container">
+        <!-- Home Section -->
+        <section id="home" class="active fade-in">
+            <h2>Building the Future with Metal</h2>
+            <p>At MetalCraft, we specialize in crafting modern metal buildings and innovative DIY solutions for homes, businesses, and industries.</p>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="fade-in">
+            <h2>Our Services</h2>
+            <ul>
+                <li>Custom Metal Building Design</li>
+                <li>DIY Metal Kits for Enthusiasts</li>
+                <li>Industrial Metal Structures</li>
+                <li>Residential Metal Sheds & Garages</li>
+                <li>Consultation & Installation Services</li>
+            </ul>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="fade-in">
+            <h2>About Us</h2>
+            <img src="https://via.placeholder.com/800x400" alt="MetalCraft Team">
+            <p>Founded in 2015, MetalCraft has become a leader in the metal construction industry. Our mission is to provide durable, sustainable, and innovative metal solutions that meet the needs of our clients.</p>
+            <p>Whether you're looking for a custom-designed metal building or a DIY kit to bring your ideas to life, we're here to help!</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="fade-in">
+            <h2>Contact Us</h2>
+            <form action="#" method="post">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2023 MetalCraft. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to show the selected section and hide others
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show the selected section
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.classList.add('active');
+
+            // Trigger fade-in effect
+            setTimeout(() => {
+                selectedSection.classList.add('fade-in-active');
+            }, 50);
+        }
+
+        // Add scroll animation for elements with class 'fade-in'
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.fade-in').forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight * 0.8) { // 80% of viewport height
+                    element.classList.add('active');
+                }
+            });
+        });
+
+        // Trigger initial scroll check
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>
