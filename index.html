@@ -16,7 +16,7 @@
             overflow-x: hidden;
         }
         header {
-            background: linear-gradient(135deg, #2c2c2c, #444);
+            background: linear-gradient(135deg, #111, #2c2c2c); /* Darker gradient */
             color: white;
             padding: 20px;
             text-align: center;
@@ -31,6 +31,8 @@
         header img {
             max-width: 150px; /* Adjust size of the logo */
             margin-bottom: 10px;
+            border: 2px solid #ff7f50; /* Coral border for contrast */
+            border-radius: 10px; /* Rounded corners for a modern look */
         }
         header h1 {
             margin: 0;
@@ -39,6 +41,12 @@
             text-transform: uppercase;
             position: relative;
             z-index: 2;
+            color: #fff; /* White text for visibility */
+        }
+        header p {
+            margin: 0;
+            font-size: 1.2em;
+            color: #ccc; /* Light gray for tagline */
         }
         nav {
             background: linear-gradient(135deg, #444, #2c2c2c);
@@ -271,7 +279,7 @@
     </div>
 
     <header>
-        <img src="img/Draz.jpg" alt="DRAZ INC. Logo"> <!-- Updated Logo Path -->
+        <img src="img/Draz.png" alt="DRAZ INC. Logo"> <!-- Updated Logo Path -->
         <h1>Welcome to DRAZ INC.</h1>
         <p>Your Partner in Modern Metal Buildings & DIY Solutions</p>
     </header>
@@ -334,37 +342,4 @@
                 button.classList.remove('active');
             });
 
-            // Add 'active' class to the selected section and button
-            const selectedSection = document.getElementById(sectionId);
-            selectedSection.classList.add('active');
-
-            const selectedButton = document.getElementById(`${sectionId}Button`);
-            selectedButton.classList.add('active');
-
-            // Trigger fade-in effect
-            setTimeout(() => {
-                selectedSection.classList.add('fade-in-active');
-            }, 50);
-        }
-
-        // Initialize the first button as active on page load
-        window.onload = () => {
-            document.getElementById('homeButton').classList.add('active');
-        };
-
-        // Add scroll animation for elements with class 'fade-in'
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('.fade-in').forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (elementTop < windowHeight * 0.8) { // 80% of viewport height
-                    element.classList.add('active');
-                }
-            });
-        });
-
-        // Trigger initial scroll check
-        window.dispatchEvent(new Event('scroll'));
-    </script>
-</body>
-</html>
+            // Add 'active'
