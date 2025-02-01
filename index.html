@@ -18,27 +18,15 @@
         header {
             background: #1f1f1f; /* Updated Header Background Color */
             color: white;
-            padding: 15px; /* Reduced padding */
+            padding: 20px; /* Adjusted padding */
             text-align: center;
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-        header img {
-            width: 100%; /* Stretch logo to full width of header */
-            height: auto; /* Maintain aspect ratio */
-            max-height: 150px; /* Limit maximum height to prevent distortion */
-            object-fit: contain; /* Ensure proper scaling */
-            margin-bottom: 10px;
-            border-radius: 10px; /* Rounded corners for a modern look */
         }
         header h1 {
             margin: 0;
-            font-size: 2em; /* Adjusted font size for better balance */
+            font-size: 2.5em; /* Slightly smaller to accommodate the logo */
             letter-spacing: 3px;
             text-transform: uppercase;
             position: relative;
@@ -47,7 +35,7 @@
         }
         header p {
             margin: 0;
-            font-size: 1em; /* Slightly smaller tagline */
+            font-size: 1.2em;
             color: #ccc; /* Light gray for tagline */
         }
         nav {
@@ -245,16 +233,22 @@
             transition: all 0.3s ease;
         }
 
+        /* Bottom Corner Logo */
+        .corner-logo {
+            position: fixed;
+            bottom: 20px; /* Distance from the bottom */
+            right: 20px; /* Distance from the right */
+            width: 100px; /* Width of the logo */
+            height: auto; /* Maintain aspect ratio */
+            z-index: 10; /* Ensure it appears above other elements */
+            border-radius: 10px; /* Rounded corners for a modern look */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+        }
+
         /* Media Queries */
         @media (max-width: 768px) {
-            header img {
-                max-height: 100px; /* Smaller logo on smaller screens */
-            }
             header h1 {
-                font-size: 1.5em; /* Adjust title size */
-            }
-            header p {
-                font-size: 0.9em; /* Adjust tagline size */
+                font-size: 1.8em;
             }
             nav a {
                 padding: 15px 10px;
@@ -262,6 +256,9 @@
             }
             .container {
                 padding: 30px;
+            }
+            .corner-logo {
+                width: 80px; /* Smaller logo on smaller screens */
             }
         }
     </style>
@@ -287,7 +284,6 @@
     </div>
 
     <header>
-        <img src="img/Draz.png" alt="DRAZ INC. Logo"> <!-- Updated Logo Path -->
         <h1>Welcome to DRAZ INC.</h1>
         <p>Your Partner in Modern Metal Buildings & DIY Solutions</p>
     </header>
@@ -338,5 +334,52 @@
     <footer>
         <p>&copy; 2023 DRAZ INC. All rights reserved.</p>
     </footer>
+
+    <!-- Bottom Corner Logo -->
+    <img src="img/Draz.png" alt="DRAZ INC. Logo" class="corner-logo">
+
+    <script>
+        // Function to show the selected section and highlight the active button
+        function showSection(sectionId) {
+            // Remove 'active' class from all sections and buttons
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('nav a').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Add 'active' class to the selected section and button
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.classList.add('active');
+
+            const selectedButton = document.getElementById(`${sectionId}Button`);
+            selectedButton.classList.add('active');
+
+            // Trigger fade-in effect
+            setTimeout(() => {
+                selectedSection.classList.add('fade-in-active');
+            }, 50);
+        }
+
+        // Initialize the first button as active on page load
+        window.onload = () => {
+            document.getElementById('homeButton').classList.add('active');
+        };
+
+        // Add scroll animation for elements with class 'fade-in'
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.fade-in').forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight * 0.8) { // 80% of viewport height
+                    element.classList.add('active');
+                }
+            });
+        });
+
+        // Trigger initial scroll check
+        window.dispatchEvent(new Event('scroll'));
+    </script>
 </body>
 </html>
