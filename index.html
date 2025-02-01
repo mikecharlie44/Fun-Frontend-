@@ -16,7 +16,7 @@
             overflow-x: hidden;
         }
         header {
-            background: linear-gradient(135deg, #111, #2c2c2c); /* Darker gradient */
+            background: #1f1f1f; /* Updated Header Background Color */
             color: white;
             padding: 20px;
             text-align: center;
@@ -342,4 +342,11 @@
                 button.classList.remove('active');
             });
 
-            // Add 'active'
+            // Add 'active' class to the selected section and button
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.classList.add('active');
+
+            const selectedButton = document.getElementById(`${sectionId}Button`);
+            selectedButton.classList.add('active');
+
+            // Trigger fade-in effect
