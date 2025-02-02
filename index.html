@@ -16,27 +16,48 @@
             overflow-x: hidden;
         }
         header {
-            background: #7465b4; /* Updated Header Background Color */
-            color: white;
+            background: #000000; /* Updated Header Background Color */
+            color: rgb(253, 133, 35);
             padding: 20px; /* Adjusted padding */
             text-align: center;
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
         }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff7f50, #ff6347, #ff7f50, #ff6347);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s infinite alternate;
+            z-index: -1;
+            transform: rotate(-45deg);
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
         header h1 {
-            margin: 0;
-            font-size: 2.5em; /* Slightly smaller to accommodate the logo */
+            font-size: 3.5em;
             letter-spacing: 3px;
             text-transform: uppercase;
-            position: relative;
-            z-index: 2;
-            color: #f7a730; /* White text for visibility */
+            margin: 0;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
         }
         header p {
-            margin: 0;
-            font-size: 1.2em;
-            color: #331f6b; /* Light gray for tagline */
+            font-size: 1.5em;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeIn 3s ease forwards;
+        }
+        @keyframes fadeIn {
+             0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         nav {
             background: linear-gradient(135deg, #444, #2c2c2c);
@@ -149,6 +170,43 @@
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
+        .rotating-text {
+           display: inline-block;
+           overflow: hidden;
+            height: 40px;
+          vertical-align: middle;
+         }
+        .rotating-text span {
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            animation: rotateText 8s infinite;
+        }
+         @keyframes rotateText {
+         0%, 20% { transform: translateY(0); }
+        25%, 45% { transform: translateY(-40px); }
+        50%, 70% { transform: translateY(-80px); }
+        75%, 95% { transform: translateY(-120px); }
+        100% { transform: translateY(0); }
+        }
+
+        nav a:hover {
+            background: linear-gradient(135deg, #ff7f50, #ff6347);
+            transform: scale(1.1);
+        } 
+              
+        @media (max-width: 768px) {
+          header h1 {
+           font-size: 2em;
+        }
+        nav a {
+           padding: 15px 10px;
+           font-size: 1em;
+        }
+        .container {
+            padding: 30px;
+           }
+        }
         /* Creative Home Section */
         #home {
             color: white;
@@ -286,7 +344,12 @@
 
     <header>
         <h1>Welcome to DRAZ INC.</h1>
-        <p>Your Partner in Modern Metal Buildings & DIY Solutions</p>
+        <p>We are your trusted partner in <span class="rotating-text">
+            <span>modern metal buildings</span>
+            <span>innovative DIY solutions</span>
+            <span>sustainable construction</span>
+            <span>custom designs</span>
+        </span></p>
     </header>
     <nav>
         <a href="#" onclick="showSection('home')" id="homeButton">Home</a>
